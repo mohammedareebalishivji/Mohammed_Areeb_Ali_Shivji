@@ -2,6 +2,7 @@
   'use strict';
 
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   // --- Lenis ---
   const lenis = new Lenis({
@@ -45,6 +46,7 @@
   function initParticles() {
     if (isReduced) return;
     const container = document.getElementById('hero-particles');
+    if (!container) return;
     for (let i = 0; i < 30; i++) {
       const p = document.createElement('div');
       p.className = 'hero-particle';
@@ -63,6 +65,23 @@
         delay: Math.random() * 3000,
       });
     }
+  }
+
+  // --- Hero Ambient Gradient (scroll-driven shift) ---
+  function initHeroGradient() {
+    if (isReduced || isMobile) return;
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    gsap.to(hero, {
+      backgroundPosition: '50% 100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1,
+      }
+    });
   }
 
   // --- Hero Title Animation ---
@@ -126,6 +145,7 @@
   // --- Scroll Progress ---
   function initScrollProgress() {
     const bar = document.getElementById('scroll-progress');
+    if (!bar) return;
     if (isReduced) { bar.style.display = 'none'; return; }
     gsap.to(bar, {
       width: '100%',
@@ -193,28 +213,65 @@
     }
   }
 
-  // --- Project Cards Stagger ---
-  function initProjectCards() {
-    if (isReduced) {
-      document.querySelectorAll('.project-card').forEach(c => {
-        c.style.opacity = '1'; c.style.transform = 'none';
+  // --- About Image Parallax ---
+  function initAboutParallax() {
+    if (isReduced || isMobile) return;
+    const img = document.querySelector('.about-image');
+    const decor = document.querySelector('.about-image-decor');
+    if (!img) return;
+    gsap.to(img, {
+      y: 60,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.5,
+      }
+    });
+    if (decor) {
+      gsap.to(decor, {
+        y: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#about',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5,
+        }
       });
+    }
+  }
+
+  // --- Project Cards Clip-Path Reveal ---
+  function initProjectCards() {
+    const cards = document.querySelectorAll('.project-card');
+    if (!cards.length) return;
+    if (isReduced) {
+      cards.forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; c.style.clipPath = 'none'; });
       return;
     }
-    gsap.to('.project-card', {
-      opacity: 1, y: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '#projects-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none reverse',
-      }
+    cards.forEach((card, i) => {
+      gsap.fromTo(card, {
+        opacity: 0,
+        y: 60,
+        clipPath: 'inset(0 0 100% 0)',
+      }, {
+        opacity: 1,
+        y: 0,
+        clipPath: 'inset(0 0 0% 0)',
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        }
+      });
     });
   }
 
-  // --- Skill Category Reveal ---
+  // --- Skills Reveal ---
   function initSkillsReveal() {
     if (isReduced) {
       document.querySelectorAll('.skill-category').forEach(c => {
@@ -284,8 +341,8 @@
   // --- Footer Closing ---
   function initFooterReveal() {
     if (isReduced) {
-      document.getElementById('footer-closing').style.opacity = '1';
-      document.getElementById('footer-closing').style.transform = 'none';
+      const el = document.getElementById('footer-closing');
+      if (el) { el.style.opacity = '1'; el.style.transform = 'none'; }
       return;
     }
     gsap.to('#footer-closing', {
@@ -327,8 +384,11 @@
   // --- Pinned Showcase Horizontal Scroll ---
   function initPinnedShowcase() {
     if (isReduced) {
-      document.querySelector('.pinned-showcase')?.classList.remove('pinned-showcase');
-      document.querySelector('.pinned-showcase-sticky')?.classList.remove('pinned-showcase-sticky');
+      const showcase = document.querySelector('.pinned-showcase');
+      if (showcase) {
+        showcase.classList.remove('pinned-showcase');
+        showcase.querySelector('.pinned-showcase-sticky')?.classList.remove('pinned-showcase-sticky');
+      }
       return;
     }
 
@@ -367,6 +427,27 @@
         scrub: 1,
         invalidateOnRefresh: true,
       }
+    });
+  }
+
+  // --- Pinned Cards Scale + Saturation Pop ---
+  function initPinnedCardsPop() {
+    if (isReduced || isMobile) return;
+    document.querySelectorAll('.pinned-card').forEach(card => {
+      gsap.fromTo(card, {
+        scale: 0.92,
+        filter: 'grayscale(0.6) saturate(0.4)',
+      }, {
+        scale: 1,
+        filter: 'grayscale(0) saturate(1)',
+        duration: 1.2,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        }
+      });
     });
   }
 
@@ -435,27 +516,6 @@
     });
   }
 
-  // --- Pinned Card Reveal ---
-  function initPinnedCardsReveal() {
-    if (isReduced) {
-      document.querySelectorAll('.pinned-card').forEach(c => {
-        c.style.opacity = '1'; c.style.transform = 'none';
-      });
-      return;
-    }
-    gsap.from('.pinned-card', {
-      opacity: 0, y: 30,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.pinned-showcase',
-        start: 'top 70%',
-        toggleActions: 'play none none reverse',
-      }
-    });
-  }
-
   // --- Init ---
   document.addEventListener('DOMContentLoaded', () => {
     splitHeroChars();
@@ -468,16 +528,18 @@
     setTimeout(() => {
       initScrollProgress();
       initSectionWordReveals();
+      initAboutParallax();
       initProjectCards();
       initSkillsReveal();
       initAchievementsReveal();
       initFooterReveal();
       initCounters();
       initPinnedShowcase();
+      initPinnedCardsPop();
       initMagneticButtons();
       initNavLinks();
       initCertReveal();
-      initPinnedCardsReveal();
+      initHeroGradient();
       ScrollTrigger.refresh();
     }, 500);
   });
