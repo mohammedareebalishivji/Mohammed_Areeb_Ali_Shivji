@@ -2,7 +2,8 @@
   'use strict';
 
   const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const mobileMQ = window.matchMedia('(max-width: 768px)');
+  const isMobile = mobileMQ.matches;
 
   // --- Lenis ---
   const lenis = new Lenis({
@@ -383,51 +384,69 @@
 
   // --- Pinned Showcase Horizontal Scroll ---
   function initPinnedShowcase() {
-    if (isReduced) {
-      const showcase = document.querySelector('.pinned-showcase');
-      if (showcase) {
-        showcase.classList.remove('pinned-showcase');
-        showcase.querySelector('.pinned-showcase-sticky')?.classList.remove('pinned-showcase-sticky');
+    const showcase = document.querySelector('.pinned-showcase');
+    const sticky = document.querySelector('.pinned-showcase-sticky');
+    if (!showcase || !sticky) return;
+
+    function setupPinnedShowcase() {
+      const isMobileNow = mobileMQ.matches;
+
+      if (isReduced || isMobileNow) {
+        // Kill GSAP pinning if it was set up
+        ScrollTrigger.getAll().forEach(st => {
+          if (st.vars.pin && st.vars.trigger === showcase) st.kill();
+        });
+        sticky.style.overflowX = 'auto';
+        sticky.style.scrollSnapType = 'x mandatory';
+        sticky.style.WebkitOverflowScrolling = 'touch';
+        gsap.set(sticky, { clearProps: 'all' });
+        return;
       }
-      return;
+
+      // Desktop: GSAP-driven scrubbed horizontal scroll
+      sticky.style.overflowX = '';
+      sticky.style.scrollSnapType = '';
+
+      const track = document.getElementById('showcase-track');
+      if (!track) return;
+      const cards = track.querySelectorAll('.pinned-card');
+      if (cards.length === 0) return;
+
+      let cardStyle = window.getComputedStyle(cards[0]);
+      let gap = parseFloat(cardStyle.marginRight) || 48;
+      let cardW = cards[0].offsetWidth + gap;
+      let totalW = cardW * cards.length - gap;
+      let viewportW = window.innerWidth;
+      let maxScroll = Math.max(0, totalW - viewportW + 80);
+
+      function updateMetrics() {
+        cardStyle = window.getComputedStyle(cards[0]);
+        gap = parseFloat(cardStyle.marginRight) || 48;
+        cardW = cards[0].offsetWidth + gap;
+        totalW = cardW * cards.length - gap;
+        viewportW = window.innerWidth;
+        maxScroll = Math.max(0, totalW - viewportW + 80);
+        ScrollTrigger.refresh();
+      }
+
+      window.addEventListener('resize', updateMetrics);
+
+      gsap.to(track, {
+        x: () => -maxScroll,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: showcase,
+          start: 'top top',
+          end: () => '+=' + (maxScroll + window.innerHeight),
+          pin: sticky,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        }
+      });
     }
 
-    const track = document.getElementById('showcase-track');
-    if (!track) return;
-    const cards = track.querySelectorAll('.pinned-card');
-    if (cards.length === 0) return;
-
-    let cardStyle = window.getComputedStyle(cards[0]);
-    let gap = parseFloat(cardStyle.marginRight) || 48;
-    let cardW = cards[0].offsetWidth + gap;
-    let totalW = cardW * cards.length - gap;
-    let viewportW = window.innerWidth;
-    let maxScroll = Math.max(0, totalW - viewportW + 80);
-
-    function updateMetrics() {
-      cardStyle = window.getComputedStyle(cards[0]);
-      gap = parseFloat(cardStyle.marginRight) || 48;
-      cardW = cards[0].offsetWidth + gap;
-      totalW = cardW * cards.length - gap;
-      viewportW = window.innerWidth;
-      maxScroll = Math.max(0, totalW - viewportW + 80);
-      ScrollTrigger.refresh();
-    }
-
-    window.addEventListener('resize', updateMetrics);
-
-    gsap.to(track, {
-      x: () => -maxScroll,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.pinned-showcase',
-        start: 'top top',
-        end: () => '+=' + (maxScroll + window.innerHeight),
-        pin: '.pinned-showcase-sticky',
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    });
+    setupPinnedShowcase();
+    mobileMQ.addEventListener('change', setupPinnedShowcase);
   }
 
   // --- Pinned Cards Scale + Saturation Pop ---
