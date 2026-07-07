@@ -483,18 +483,28 @@
       <span class="word">remarkable.</span>
     </h2>
     <p class="cta-sub">Available for collaborations, internships, and opportunities where I can bring my full-stack and data science expertise to real-world challenges.</p>
-    <form id="contact-form" class="contact-form">
+    <div class="contact-form">
       <div class="form-group">
-        <input type="text" id="name" name="name" placeholder="Your Name" class="form-input" required>
+        <input type="text" id="wa-name" placeholder="Your Name" class="form-input" required>
       </div>
       <div class="form-group">
-        <input type="email" id="email" name="email" placeholder="Your Email" class="form-input" required>
+        <input type="email" id="wa-email" placeholder="Your Email" class="form-input" required>
       </div>
       <div class="form-group">
-        <textarea id="message" name="message" placeholder="Your Message" class="form-input" rows="4" required></textarea>
+        <textarea id="wa-msg" placeholder="Your Message" class="form-input" rows="4" required></textarea>
       </div>
-      <button type="submit" class="cta-btn">Send via WhatsApp →</button>
-    </form>
+      <button onclick="sendToWhatsApp()" class="cta-btn">Send via WhatsApp →</button>
+    </div>
+    <script>
+    function sendToWhatsApp() {
+      var name = document.getElementById('wa-name').value.trim();
+      var email = document.getElementById('wa-email').value.trim();
+      var msg = document.getElementById('wa-msg').value.trim();
+      if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+      var text = 'Hi Areeb,\n\nName: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + msg;
+      window.open('https://wa.me/917028734365?text=' + encodeURIComponent(text), '_blank');
+    }
+    </script>
   </div>
 </section>
 

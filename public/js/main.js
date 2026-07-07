@@ -456,26 +456,6 @@
     });
   }
 
-  // --- WhatsApp form handler ---
-  function initContactForm() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('name')?.value.trim();
-      const email = document.getElementById('email')?.value.trim();
-      const message = document.getElementById('message')?.value.trim();
-
-      const text = `Hi Areeb,%0A%0AName: ${encodeURIComponent(name || '')}%0AEmail: ${encodeURIComponent(email || '')}%0A%0AMessage:%0A${encodeURIComponent(message || '')}`;
-
-      window.open(`https://wa.me/917028734365?text=${text}`, '_blank');
-
-      form.innerHTML = '<p class="form-success">WhatsApp opened — just tap send!</p>';
-    });
-  }
-
   // --- Init ---
   document.addEventListener('DOMContentLoaded', () => {
     splitHeroChars();
@@ -498,7 +478,6 @@
       initNavLinks();
       initCertReveal();
       initPinnedCardsReveal();
-      initContactForm();
       ScrollTrigger.refresh();
     }, 500);
   });
