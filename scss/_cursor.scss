@@ -1,0 +1,11 @@
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+body { cursor: none !important; }
+
+@media (hover: none) and (pointer: coarse) {
+  *, *::before, *::after, body { cursor: auto !important; }
+}

@@ -1,0 +1,46 @@
+.certifications-wrap { margin-top: 3rem; position: relative; }
+
+.cert-timeline {
+  position: relative; padding-left: 2rem;
+
+  &::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: $border;
+  }
+}
+
+.cert-item {
+  position: relative; padding: 1.5rem 0 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  opacity: 0; transform: translateX(-20px);
+
+  &::before {
+    content: ''; position: absolute; left: -5px; top: 2rem;
+    width: 10px; height: 10px;
+    background: $accent; border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  &:hover::before { opacity: 1; }
+}
+
+.cert-item-date {
+  font-size: 0.7rem; color: $accent;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 500;
+}
+
+.cert-item-title {
+  font-family: $font-serif;
+  font-size: 1.1rem; font-weight: 500;
+  margin: 0.25rem 0 0.35rem;
+}
+
+.cert-item-org {
+  font-size: 0.85rem; color: $text-muted;
+}
+
+.cert-item-desc {
+  font-size: 0.85rem; color: $text-muted;
+  margin-top: 0.5rem; line-height: 1.7;
+}

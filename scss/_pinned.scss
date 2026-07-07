@@ -1,0 +1,37 @@
+.pinned-showcase {
+  height: 300vh; position: relative;
+}
+
+.pinned-showcase-sticky {
+  height: 100vh; position: sticky; top: 0;
+  display: flex; align-items: center; overflow: hidden;
+  background: $bg-alt;
+}
+
+.pinned-showcase-track {
+  display: flex; gap: 3rem; padding: 0 clamp(1.5rem, 4vw, 4rem);
+  will-change: transform;
+}
+
+.pinned-card {
+  min-width: 380px; max-width: 420px;
+  padding: 2.5rem; background: $surface;
+  border: 1px solid $border; border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.pinned-card-num {
+  font-family: $font-serif;
+  font-size: 3rem; color: $accent; font-weight: 600;
+  opacity: 0.2; line-height: 1;
+}
+
+.pinned-card-title {
+  font-family: $font-serif;
+  font-size: 1.3rem; font-weight: 500;
+  margin: 0.75rem 0 0.5rem;
+}
+
+.pinned-card-desc {
+  font-size: 0.85rem; color: $text-muted; line-height: 1.7;
+}

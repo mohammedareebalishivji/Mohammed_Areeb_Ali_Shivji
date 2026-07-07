@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Areeb Ali Shivji — Portfolio</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+</head>
+<body>
+
+<div id="cursor-root"></div>
+
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="preloader-inner">
+    <div class="preloader-logo">Mohammed Areeb Ali Shivji</div>
+    <div class="preloader-bar-wrap"><div class="preloader-bar" id="preloader-bar"></div></div>
+    <div class="preloader-counter" id="preloader-counter">0%</div>
+  </div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<nav>
+  <span class="nav-logo">AS</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="hero-particles"></div>
+  <div class="hero-content">
+    <div class="hero-title-wrap">
+      <h1 class="hero-title" id="hero-title">
+        <span class="line">Mohammed Areeb</span>
+        <span class="line">Ali Shivji</span>
+      </h1>
+    </div>
+    <div id="typewriter-root"></div>
+    <p class="hero-sub">B.Tech in Computer Science &amp; Data Science · Building products that matter — from full-stack platforms to health-tech startups.</p>
+    <a href="#projects" class="hero-cta" id="hero-cta">View Work <span class="arrow">→</span></a>
+  </div>
+  <div class="scroll-cue" id="scroll-cue">
+    <span class="scroll-cue-text">Scroll</span>
+    <div class="scroll-cue-line"></div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <img src="/Pic.jpeg" alt="Mohammed Areeb Ali Shivji" class="about-image" loading="lazy">
+        <div class="about-image-decor"></div>
+      </div>
+      <div>
+        <p class="section-label">About</p>
+        <h2 class="section-title" id="about-title">Building at the<br>intersection of code<br>&amp; purpose.</h2>
+        <p class="section-text">Innovation-driven B.Tech student specializing in Computer Science and Data Science. Experienced building and shipping full-stack products with advanced React/TSX, including Stellaar — a live family-club website and companion application. Skilled in applying GenAI and LLM-based approaches to real data problems, validated across twelve industry job simulations spanning data science, software engineering, and cybersecurity. Founder of Pediatrack, a health-tech startup concept aimed at solving pediatric healthcare challenges using predictive data analysis.</p>
+        <p class="section-text" style="margin-top: 1rem;"><strong style="color: var(--accent);">SVKM NMIMS, Hyderabad</strong> — B.Tech in Computer Science &amp; Data Science · Batch of 2029</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-num" data-count="12">0</div>
+            <div class="about-stat-label">Job Simulations</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num" data-count="3">0</div>
+            <div class="about-stat-label">Startups Built</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num" data-count="8">0</div>
+            <div class="about-stat-label">Technologies</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-inner">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title" id="projects-title">What I've built.</h2>
+    <div class="projects-grid" id="projects-grid">
+      <div class="project-card">
+        <div class="project-card-img">Stellaar</div>
+        <div>
+          <p class="project-card-tag">Founder &amp; Full-Stack Developer</p>
+          <h3 class="project-card-title">Stellaar — Family Club Platform</h3>
+          <p class="project-card-desc">Designed, built, and deployed the official website for Stellaar, a new family club, from initial concept through production launch. Developed a multipurpose companion application handling member login, finance, and billing management. Owned the project end-to-end as founder — product scope, UI/UX, technical implementation, and deployment.</p>
+          <div class="project-card-tech">
+            <span>React</span><span>TSX</span><span>Full-Stack</span><span>UI/UX</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">WebApp</div>
+        <div>
+          <p class="project-card-tag">Founder &amp; Lead Developer</p>
+          <h3 class="project-card-title">Stellaar WebApp — Staff &amp; Member Portal</h3>
+          <p class="project-card-desc">Comprehensive club management system (Next.js 16 + Express 5 + Supabase) with 25+ API route modules, real-time Socket.IO, and RBAC across 16 staff roles. Features include restaurant POS with KOT system, inventory auto-deduction via standardized recipes, department invoicing with GST, WhatsApp payment receipts, member digital passport with QR cards, family affiliate management (up to 3 per member), AMC automation with Jan 15 lock rule, housekeeping with escalation, concierge ticketing with real-time chat, and an immutable financial ledger. Dual-node architecture with cloud + local SQLite shadow registry for zero data loss.</p>
+          <div class="project-card-tech">
+            <span>Next.js</span><span>Express</span><span>PostgreSQL</span><span>Socket.IO</span><span>TypeScript</span><span>Prisma</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Club</div>
+        <div>
+          <p class="project-card-tag">Lead Developer</p>
+          <h3 class="project-card-title">The Stellaar — Premium Club Marketing Site</h3>
+          <p class="project-card-desc">Built the official marketing website for The Stellaar Premium Family Club using Next.js 16 App Router and Framer Motion. Features a cinematic landing page with video background, membership tier showcase (Blue/Silver/Gold), lead capture form with WhatsApp redirect, rich blog system with TipTap editor, staff profiles, and Google Maps integration via Supabase + local SQLite.</p>
+          <div class="project-card-tech">
+            <span>Next.js</span><span>Framer Motion</span><span>Tailwind</span><span>Supabase</span><span>TypeScript</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Hayaat</div>
+        <div>
+          <p class="project-card-tag">Full-Stack Developer</p>
+          <h3 class="project-card-title">Hayaat Health Centre — Medical Portal</h3>
+          <p class="project-card-desc">Full-stack medical web application for Hayaat Emergency &amp; Diagnostics Centre in Arusha, Tanzania. Built with React 19 and Vite featuring patient registration and JWT-authenticated login, appointment booking, health blog with rich content management, and admin dashboard. Express 5 backend with SQLite3 and bcrypt password hashing.</p>
+          <div class="project-card-tech">
+            <span>React</span><span>Vite</span><span>Express</span><span>SQLite</span><span>JWT</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Pediatrack</div>
+        <div>
+          <p class="project-card-tag">Founder</p>
+          <h3 class="project-card-title">Pediatrack — Health-Tech Startup</h3>
+          <p class="project-card-desc">Architecting a healthcare solution focused on pediatric data monitoring and predictive analysis. Developed a 3–4 year strategic roadmap for product launch and market entry. Managing technical documentation and conceptual frameworks for real-world healthcare problem-solving.</p>
+          <div class="project-card-tech">
+            <span>Healthcare</span><span>Data Science</span><span>Predictive Analytics</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Smart City</div>
+        <div>
+          <p class="project-card-tag">Lead Developer</p>
+          <h3 class="project-card-title">Smart City Traffic &amp; Transport Management</h3>
+          <p class="project-card-desc">Architected a modular transport simulation system using Java OOP. Implemented Inheritance, Polymorphism, and Encapsulation to manage complex traffic entities. Engineered real-time interaction logic between autonomous vehicle agents and signal controllers.</p>
+          <div class="project-card-tech">
+            <span>Java</span><span>OOP</span><span>Simulation</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Nexus</div>
+        <div>
+          <p class="project-card-tag">Business Analyst</p>
+          <h3 class="project-card-title">Nexus Consumer Goods Cost Analysis</h3>
+          <p class="project-card-desc">Developed a comprehensive business presentation involving Cost Sheet analysis and Budgetary Control. Performed Marginal Costing and manufacturing project recommendations. Implemented VBA automation to streamline professional reporting slide generation.</p>
+          <div class="project-card-tech">
+            <span>VBA</span><span>Excel</span><span>Cost Analysis</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">BCG X</div>
+        <div>
+          <p class="project-card-tag">GenAI &amp; Data Science Consultant</p>
+          <h3 class="project-card-title">Financial Chatbot &amp; Churn Prediction</h3>
+          <p class="project-card-desc">Built a rule-based financial chatbot using Python and pandas to parse 10-K and 10-Q filings. Led customer churn analysis engineering a tuned random forest model achieving 50% recall. Advised on multi-channel ad campaign performance through simulated conversion data analysis.</p>
+          <div class="project-card-tech">
+            <span>Python</span><span>pandas</span><span>Random Forest</span><span>GenAI</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">J.P. Morgan</div>
+        <div>
+          <p class="project-card-tag">Software Engineering Job Simulation</p>
+          <h3 class="project-card-title">Kafka Microservice &amp; REST API</h3>
+          <p class="project-card-desc">Integrated Kafka into a Spring Boot microservice to consume and deserialize high-volume transaction messages using embedded Kafka testing. Implemented transaction validation, persistence, and balance-update logic with Spring Data JPA and H2 database. Built REST endpoints for querying user balances.</p>
+          <div class="project-card-tech">
+            <span>Kafka</span><span>Spring Boot</span><span>JPA</span><span>REST</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Lloyds</div>
+        <div>
+          <p class="project-card-tag">Data Science Job Simulation</p>
+          <h3 class="project-card-title">Customer Churn Prediction Model</h3>
+          <p class="project-card-desc">Built a customer churn prediction model using random forest and ML algorithms, achieving a 0.82 ROC-AUC score. Handled missing values, categorical encoding, and feature scaling with pandas and scikit-learn. Tuned hyperparameters via GridSearchCV with feature-importance analysis.</p>
+          <div class="project-card-tech">
+            <span>scikit-learn</span><span>pandas</span><span>GridSearchCV</span><span>ML</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">British Airways</div>
+        <div>
+          <p class="project-card-tag">Data Science Job Simulation</p>
+          <h3 class="project-card-title">Customer Review Analysis &amp; Buying Behavior</h3>
+          <p class="project-card-desc">Scraped and analyzed customer review data to uncover insights on airline customer experience. Built a predictive model identifying key factors that influence customer buying behavior.</p>
+          <div class="project-card-tech">
+            <span>Web Scraping</span><span>NLP</span><span>Predictive Modeling</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Deloitte</div>
+        <div>
+          <p class="project-card-tag">Data Analytics &amp; Technology</p>
+          <h3 class="project-card-title">Forensic Data Analysis &amp; Dashboard</h3>
+          <p class="project-card-desc">Applied data analysis and forensic technology methods to a client scenario. Built a Tableau dashboard and used Excel to classify data and draw business conclusions. Also completed a development and coding simulation with a technical proposal for a new business dashboard.</p>
+          <div class="project-card-tech">
+            <span>Tableau</span><span>Excel</span><span>Forensics</span><span>Dashboard</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">Tata iQ</div>
+        <div>
+          <p class="project-card-tag">Data Analytics Job Simulation</p>
+          <h3 class="project-card-title">GenAI Risk Assessment &amp; Collections Strategy</h3>
+          <p class="project-card-desc">Ran exploratory data analysis with GenAI tools to assess data quality and identify risk indicators for Financial Services. Proposed a no-code predictive modeling framework for customer delinquency risk. Designed an agentic-AI collections strategy incorporating ethical AI principles.</p>
+          <div class="project-card-tech">
+            <span>GenAI</span><span>EDA</span><span>Risk Modeling</span><span>Ethical AI</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-img">TCS</div>
+        <div>
+          <p class="project-card-tag">Cybersecurity Job Simulation</p>
+          <h3 class="project-card-title">IAM Strategy &amp; Security Consulting</h3>
+          <p class="project-card-desc">Assessed identity and access management strategy for a Cybersecurity Consulting engagement. Delivered documentation and presentations translating complex IAM and security concepts for business stakeholders.</p>
+          <div class="project-card-tech">
+            <span>IAM</span><span>Cybersecurity</span><span>Consulting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pinned-showcase" id="certifications">
+  <div class="pinned-showcase-sticky">
+    <div class="pinned-showcase-track" id="showcase-track">
+      <div class="pinned-card">
+        <div class="pinned-card-num">01</div>
+        <div class="pinned-card-title">Data Labeling Analyst</div>
+        <div class="pinned-card-desc">Forage Academy · Mar 2026. Classified real customer support messages for Intent, Sentiment, and PII. Built skills in human-AI collaboration for AI ops and ML support roles.</div>
+      </div>
+      <div class="pinned-card">
+        <div class="pinned-card-num">02</div>
+        <div class="pinned-card-title">GenAI Consulting</div>
+        <div class="pinned-card-desc">BCG X · Mar 2026. Built a rule-based financial chatbot using Python and pandas to parse data from 10-K and 10-Q filings. Delivered insights for non-technical users.</div>
+      </div>
+      <div class="pinned-card">
+        <div class="pinned-card-num">03</div>
+        <div class="pinned-card-title">Data Science</div>
+        <div class="pinned-card-desc">BCG X · Jan 2026. Led customer churn analysis, engineered a random forest model in Python achieving 50% recall. Presented executive summary with actionable insights.</div>
+      </div>
+      <div class="pinned-card">
+        <div class="pinned-card-num">04</div>
+        <div class="pinned-card-title">Software Engineering</div>
+        <div class="pinned-card-desc">J.P. Morgan · Jan 2026. Integrated Kafka into a Spring Boot microservice. Implemented transaction validation with Spring Data JPA and H2 database.</div>
+      </div>
+      <div class="pinned-card">
+        <div class="pinned-card-num">05</div>
+        <div class="pinned-card-title">Data Analytics</div>
+        <div class="pinned-card-desc">Deloitte Australia · Dec 2025. Applied forensic technology methods, built a Tableau dashboard and used Excel to classify data and draw business conclusions.</div>
+      </div>
+      <div class="pinned-card">
+        <div class="pinned-card-num">06</div>
+        <div class="pinned-card-title">Cybersecurity</div>
+        <div class="pinned-card-desc">Tata Consultancy Services · Nov 2025. Assessed IAM strategy for Cybersecurity Consulting. Delivered documentation translating complex security concepts for stakeholders.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="more-certifications">
+  <div class="section-inner">
+    <p class="section-label">Certifications</p>
+    <h2 class="section-title" id="more-certs-title">Industry job simulations.</h2>
+    <div class="certifications-wrap">
+      <div class="cert-timeline">
+        <div class="cert-item">
+          <div class="cert-item-date">Apr 2025</div>
+          <div class="cert-item-title">Solutions Architecture</div>
+          <div class="cert-item-org">AWS</div>
+          <div class="cert-item-desc">Designed simple, scalable, and highly available cloud hosting architectures.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">May 2025</div>
+          <div class="cert-item-title">Data Analytics</div>
+          <div class="cert-item-org">Tata iQ</div>
+          <div class="cert-item-desc">Ran EDA with GenAI tools, proposed no-code predictive modeling framework, designed agentic-AI collections strategy.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Jun 2025</div>
+          <div class="cert-item-title">Cybersecurity</div>
+          <div class="cert-item-org">Tata Consultancy Services</div>
+          <div class="cert-item-desc">Assessed IAM strategy for Cybersecurity Consulting. Delivered documentation for business stakeholders.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Jul 2025</div>
+          <div class="cert-item-title">Data Analytics</div>
+          <div class="cert-item-org">Deloitte Australia</div>
+          <div class="cert-item-desc">Applied forensic technology, built Tableau dashboard, used Excel to classify data and draw business conclusions.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Aug 2025</div>
+          <div class="cert-item-title">Software Engineering</div>
+          <div class="cert-item-org">J.P. Morgan Chase &amp; Co.</div>
+          <div class="cert-item-desc">Integrated Kafka into Spring Boot microservice. Implemented transaction validation with Spring Data JPA and H2 database.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Sep 2025</div>
+          <div class="cert-item-title">Technology Job Simulation</div>
+          <div class="cert-item-org">Deloitte Australia</div>
+          <div class="cert-item-desc">Completed development and coding simulation, wrote technical proposal for a new business dashboard.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Oct 2025</div>
+          <div class="cert-item-title">Data Science — Customer Behavior</div>
+          <div class="cert-item-org">British Airways</div>
+          <div class="cert-item-desc">Scraped and analyzed customer review data. Built predictive model identifying key factors influencing buying behavior.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Nov 2025</div>
+          <div class="cert-item-title">Data Science — Customer Churn</div>
+          <div class="cert-item-org">Lloyds Banking Group</div>
+          <div class="cert-item-desc">Built churn prediction model achieving 0.82 ROC-AUC. Used pandas, scikit-learn, GridSearchCV, and feature-importance analysis.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Dec 2025</div>
+          <div class="cert-item-title">Data Science — Customer Churn</div>
+          <div class="cert-item-org">BCG X</div>
+          <div class="cert-item-desc">Led churn analysis, engineered a random forest model in Python (pandas, NumPy) achieving 50% recall. Presented executive summary.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Jan 2026</div>
+          <div class="cert-item-title">Data for Decision Makers</div>
+          <div class="cert-item-org">BCG X</div>
+          <div class="cert-item-desc">Advised on multi-channel ad campaign performance by analyzing simulated customer conversion data across channels.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Feb 2026</div>
+          <div class="cert-item-title">GenAI Consulting</div>
+          <div class="cert-item-org">BCG X</div>
+          <div class="cert-item-desc">Built a rule-based financial chatbot using Python and pandas to parse 10-K and 10-Q filings for non-technical users.</div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-item-date">Mar 2026</div>
+          <div class="cert-item-title">Data Labeling Analyst</div>
+          <div class="cert-item-org">Forage Academy</div>
+          <div class="cert-item-desc">Classified customer support messages for Intent, Sentiment, and PII. Audited peer labeling and proposed guideline improvements.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="section-inner">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title" id="skills-title">Technical toolkit.</h2>
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-category">
+        <div class="skill-category-title">Languages</div>
+        <div class="skill-item"><span class="skill-item-name">Python</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="90"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">Java</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">JavaScript / TypeScript</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">C / C++</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="70"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">R</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="60"></div></div></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-title">Data Science &amp; ML</div>
+        <div class="skill-item"><span class="skill-item-name">pandas / NumPy</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="90"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">scikit-learn</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="80"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">Random Forest</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">EDA &amp; Predictive Modeling</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="80"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">GenAI / LLM Tools</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="75"></div></div></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-category-title">Frontend &amp; Full-Stack</div>
+        <div class="skill-item"><span class="skill-item-name">React</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">HTML5 / CSS3</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="90"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">Spring Boot / JPA</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="75"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">Kafka / REST APIs</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="70"></div></div></div>
+        <div class="skill-item"><span class="skill-item-name">Git / Maven</span><div class="skill-item-bar"><div class="skill-item-fill" data-width="80"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="achievements">
+  <div class="section-inner">
+    <p class="section-label">Recognition</p>
+    <h2 class="section-title" id="achievements-title">Achievements &amp; Athletics.</h2>
+    <div class="achievements-grid" id="achievements-grid">
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C7 4 7 7 7 7"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5C17 4 17 7 17 7"/><path d="M4 22h16"/><path d="M10 22V8l-4-4V2h12v2l-4 4v14"/></svg>
+        </div>
+        <div class="achievement-text">Top 5 Team out of 45 teams in local hackathons</div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div class="achievement-text">Top 50 Finalist – WhiteHat Jr Global Hackathon 2021</div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 6v7"/><path d="M9 9l3-3 3 3"/></svg>
+        </div>
+        <div class="achievement-text">IIT Bombay Techfest: Data Science Workshop (Dec 2025)</div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="achievement-text">'Code of Honour' Certificate for technical excellence</div>
+      </div>
+    </div>
+    <div class="athletics-grid" id="athletics-grid">
+      <div class="athletics-item">
+        <div class="athletics-level">National Level</div>
+        <div class="athletics-name">Badminton</div>
+      </div>
+      <div class="athletics-item">
+        <div class="athletics-level">National Level</div>
+        <div class="athletics-name">Sprint Swimming</div>
+      </div>
+      <div class="athletics-item">
+        <div class="athletics-level">State Level</div>
+        <div class="athletics-name">Archery</div>
+      </div>
+      <div class="athletics-item">
+        <div class="athletics-level">State Level</div>
+        <div class="athletics-name">Taekwondo</div>
+      </div>
+      <div class="athletics-item">
+        <div class="athletics-level">State Level</div>
+        <div class="athletics-name">Karate</div>
+      </div>
+      <div class="athletics-item">
+        <div class="athletics-level">State Level</div>
+        <div class="athletics-name">Volleyball</div>
+      </div>
+      <div class="athletics-item">
+        <div class="athletics-level">State Level</div>
+        <div class="athletics-name">Football</div>
+      </div>
+      <div class="athletics-item">
+        <div class="athletics-level">State Level</div>
+        <div class="athletics-name">High Jump</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="cta-title" id="cta-title">
+      <span class="word">Let's</span>
+      <span class="word">build</span>
+      <span class="word">something</span>
+      <span class="word">remarkable.</span>
+    </h2>
+    <p class="cta-sub">Available for collaborations, internships, and opportunities where I can bring my full-stack and data science expertise to real-world challenges.</p>
+    <form id="contact-form" class="contact-form">
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="Your Name" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="Your Email" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <textarea id="message" name="message" placeholder="Your Message" class="form-input" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="cta-btn" id="cta-btn">Send a message →</button>
+    </form>
+    <div class="cta-divider"><span>or</span></div>
+    <a href="https://wa.me/917028734365" target="_blank" rel="noopener" class="cta-btn cta-btn-wa">WhatsApp me →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-closing" id="footer-closing">
+      Built with purpose.<br>
+      <span class="accent">Shipping impact, one line at a time.</span>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Mohammed Areeb Ali Shivji</span>
+      <div class="footer-links">
+        <a href="https://thestellaar.com" target="_blank" rel="noopener">Stellaar</a>
+        <a href="https://github.com/mohammedareebalishivji" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/mohammad-areeb-ali-shivji-0801a3350" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="tel:+917028734365">+91 70287 34365</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script type="module" crossorigin src="/react/typewriter.js"></script>
+</body>
+</html>
