@@ -516,6 +516,25 @@
     });
   }
 
+  // --- Mobile Nav Hamburger ---
+  function initMobileNav() {
+    const hamburger = document.getElementById('nav-hamburger');
+    const overlay = document.getElementById('nav-overlay');
+    if (!hamburger || !overlay) return;
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+    });
+  }
+
   // --- Init ---
   document.addEventListener('DOMContentLoaded', () => {
     splitHeroChars();
@@ -538,6 +557,7 @@
       initPinnedCardsPop();
       initMagneticButtons();
       initNavLinks();
+      initMobileNav();
       initCertReveal();
       initHeroGradient();
       ScrollTrigger.refresh();
