@@ -496,6 +496,13 @@
     });
   }
 
+  // --- Hero CTA scroll ---
+  document.querySelector('.hero-cta')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector('#projects');
+    if (target) lenis.scrollTo(target, { offset: -70, duration: 1.4 });
+  });
+
   // --- Smooth Nav Anchor Links ---
   function initNavLinks() {
     document.querySelectorAll('nav a[href^="#"]').forEach(a => {
@@ -507,10 +514,24 @@
         }
       });
     });
-    document.querySelector('.hero-cta')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector('#projects');
-      if (target) lenis.scrollTo(target, { offset: -70, duration: 1.4 });
+  }
+
+  // --- Mobile Nav Hamburger ---
+  function initMobileNav() {
+    const hamburger = document.getElementById('nav-hamburger');
+    const overlay = document.getElementById('nav-overlay');
+    if (!hamburger || !overlay) return;
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        overlay.classList.remove('active');
+      });
     });
   }
 
@@ -557,6 +578,7 @@
       initPinnedCardsPop();
       initMagneticButtons();
       initNavLinks();
+      initMobileNav();
       initCertReveal();
       initHeroGradient();
       ScrollTrigger.refresh();
