@@ -1,11 +1,14 @@
-*,
-*::before,
-*::after {
-  cursor: none !important;
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+  body { cursor: none !important; }
 }
 
-body { cursor: none !important; }
-
 @media (hover: none) and (pointer: coarse) {
+  *, *::before, *::after, body { cursor: auto !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
   *, *::before, *::after, body { cursor: auto !important; }
 }

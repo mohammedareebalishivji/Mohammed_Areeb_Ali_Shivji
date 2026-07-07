@@ -9,6 +9,8 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 html.lenis, html.lenis body { height: auto; }

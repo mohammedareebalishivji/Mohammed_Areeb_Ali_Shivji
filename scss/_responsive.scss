@@ -1,115 +1,261 @@
+/* ============================================
+   RESPONSIVE — Premium Adaptive Layout
+   Every breakpoint is deliberately designed,
+   not just shrunk.
+   ============================================ */
+
+/* --- Fluid base adjustments (applied everywhere) --- */
+.section { padding: clamp(3rem, 6vw, 8rem) clamp(1rem, 4vw, 4rem); }
+.section-title { font-size: clamp(1.8rem, 5vw, 3.5rem); }
+.section-text { font-size: clamp(0.9rem, 1.2vw, 1.1rem); }
+.hero-title { font-size: clamp(2.5rem, 10vw, 6.5rem); }
+.cta-title { font-size: clamp(1.8rem, 6vw, 4rem); }
+.hero-sub { font-size: clamp(0.95rem, 2vw, 1.25rem); max-width: clamp(320px, 50vw, 580px); }
+#more-certifications { padding-top: clamp(1rem, 2vw, 2rem); }
+.pinned-showcase { height: 300vh; }
+
+/* --- 1440px+ (large desktop) --- */
+@media (min-width: 1440px) {
+  .section-inner,
+  .footer-inner { max-width: 1400px; }
+  .hero-content { max-width: 1400px; }
+}
+
+/* --- 1024–1439px (small desktop / large tablet) --- */
+@media (max-width: 1439px) {
+  .about-grid { gap: 3rem; }
+  .project-card { gap: 2rem; padding: 1.75rem; }
+}
+
+@media (max-width: 1024px) {
+  .about-grid { gap: 2.5rem; }
+  .project-card { gap: 1.5rem; padding: 1.5rem; }
+  .project-card-title { font-size: 1.3rem; }
+  .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- 768–1023px (tablet portrait) --- */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: clamp(2.2rem, 10vw, 3.5rem);
+  /* Layout shifts — sections recomposed not shrunk */
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-image-wrap {
+    aspect-ratio: 4/3; max-width: 400px; margin: 0 auto;
   }
-
-  .hero-cta {
-    padding: 0.85rem 2rem;
-    font-size: 0.75rem;
+  .about-image {
+    object-position: center 20%;
   }
+  .about-image-decor { display: none; }
+  .about-stats { gap: 1rem; }
+  .about-stat-num { font-size: 2rem; }
 
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .skills-grid { grid-template-columns: 1fr; }
+  .achievements-grid { grid-template-columns: 1fr; }
+
+  /* Project cards: single column */
+  .project-card { grid-template-columns: 1fr; }
+  .project-card-img {
+    aspect-ratio: auto;
+    min-height: auto;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    background: transparent;
+    justify-content: flex-start;
   }
+  .project-card-img::after { display: none; }
 
-  .about-image-decor {
-    display: none;
+  /* Pinned showcase: flatten to auto-height horizontal scroll */
+  .pinned-showcase { height: auto; }
+  .pinned-showcase-sticky {
+    height: auto;
+    position: relative;
+    top: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 2rem clamp(1rem, 4vw, 2rem);
+    background: transparent;
   }
-
-  .about-stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  .pinned-showcase-track {
+    gap: 1.25rem;
+    padding: 0;
   }
-
-  .project-card {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-
   .pinned-card {
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 280px;
+    max-width: 280px;
     padding: 1.5rem;
+    scroll-snap-align: start;
   }
 
-  .achievements-grid {
-    grid-template-columns: 1fr;
-  }
+  .cert-timeline { padding-left: 1.2rem; }
+  .cert-item { padding: 1.25rem 0 1.25rem 1.25rem; }
+  .cert-item::before { left: -4px; width: 8px; height: 8px; top: 1.75rem; }
+  .cert-item-title { font-size: 1rem; }
+  .cert-item-desc { font-size: 0.82rem; line-height: 1.6; }
+  .cert-item-org { font-size: 0.8rem; }
 
-  .footer-bottom {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
+  /* Footer: stacked */
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  .footer-links { justify-content: center; flex-wrap: wrap; gap: 1rem; }
 
-  .footer-links {
-    justify-content: center;
+  /* Contact: full-width form */
+  .contact-form { max-width: 100%; }
+  .cta-btn { padding: 0.9rem 2rem; font-size: 0.8rem; }
+  .form-input { padding: 0.65rem 0.85rem; font-size: 0.85rem; }
+
+  /* Hero: 100svh, simpler gradient, particles hidden */
+  .hero {
+    min-height: 100svh;
+    padding: 0 clamp(1rem, 4vw, 2rem);
+    background: linear-gradient(180deg, #0b0d17, #11131f);
+    background-size: 100% 200%;
+    background-position: 50% 0%;
+  }
+  .hero-title { font-size: clamp(2.2rem, 12vw, 3.5rem); }
+  .hero-particles { display: none; }
+
+  /* Nav: links always visible, just tighter */
+  nav { height: 64px; }
+  nav .nav-links { gap: 1.25rem; }
+  nav .nav-links a { font-size: 0.7rem; letter-spacing: 0.06em; }
+
+  /* Section spacing tighter but not zero */
+  .section { padding: clamp(2.5rem, 8vw, 4rem) clamp(1rem, 4vw, 2rem); }
+
+  /* Reset project card clip-path on mobile — use simpler GSAP fade */
+  .project-card { clip-path: none !important; }
+
+  /* Section title */
+  .section-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-bottom: 1.5rem;
+  }
+  .section-title .word {
+    transform: translateY(30px);
   }
 }
 
+/* --- 375–767px (mobile portrait) --- */
+@media (max-width: 600px) {
+  .hero { min-height: 100svh; padding-top: 4rem; }
+  .hero-content {
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .hero-sub { text-align: center; }
+
+  .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .about-stat-num { font-size: 1.75rem; }
+  .about-stat-label { font-size: 0.65rem; }
+  .about-image-wrap { max-width: 300px; }
+
+  .project-card { padding: 1.25rem; gap: 1rem; }
+  .project-card-title { font-size: 1.15rem; }
+  .project-card-desc { font-size: 0.88rem; }
+  .project-card-tech span { font-size: 0.65rem; padding: 0.2rem 0.6rem; }
+
+  .skills-grid { gap: 1.25rem; }
+  .skill-category { padding: 1.5rem; }
+
+  .pinned-card { min-width: 240px; max-width: 240px; padding: 1.25rem; }
+
+  .achievement-card { padding: 1.5rem; }
+  .athletics-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .athletics-item { padding: 1rem; }
+
+  .cert-item { padding: 1rem 0 1rem 1.5rem; }
+  .cert-item::before { left: -6px; }
+  .cert-item-title { font-size: 0.95rem; }
+  .cert-item-desc { font-size: 0.88rem; }
+
+  .cta-btn { padding: 0.8rem 1.75rem; font-size: 0.75rem; min-height: 44px; }
+  .cta-sub { font-size: 0.9rem; }
+
+  nav { height: 56px; }
+  nav .nav-logo { font-size: 1rem; }
+  nav .nav-links { gap: 0.85rem; }
+  nav .nav-links a { font-size: 0.6rem; letter-spacing: 0.05em; }
+
+  .footer-closing { font-size: clamp(1.2rem, 5vw, 1.5rem); }
+  .footer-bottom { font-size: 0.75rem; }
+  .footer-links a { font-size: 0.75rem; }
+}
+
+/* --- 320–374px (small mobile) --- */
+@media (max-width: 374px) {
+  .hero-title { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+  .hero-title .char { transform: translateY(60px) rotateX(-40deg); }
+  .hero-sub { font-size: 0.85rem; }
+  .section-title { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+  .about-image-wrap { max-width: 240px; }
+  .athletics-grid { grid-template-columns: 1fr; }
+  .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .about-stat-num { font-size: 1.4rem; }
+  .about-stat-label { font-size: 0.6rem; }
+  .cta-btn { padding: 0.7rem 1.25rem; font-size: 0.7rem; width: 100%; justify-content: center; }
+  .contact-form { max-width: 100%; }
+  nav { height: 50px; }
+  nav .nav-logo { font-size: 0.85rem; }
+  nav .nav-links { gap: 0.5rem; }
+  nav .nav-links a { font-size: 0.55rem; letter-spacing: 0.03em; }
+  .pinned-card { min-width: 200px; max-width: 200px; padding: 1rem; }
+}
+
+/* --- Landscape mobile --- */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { min-height: 120svh; padding-top: 5rem; }
+  .hero-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+  .hero-sub { font-size: 0.85rem; max-width: 400px; }
+  .scroll-cue { display: none; }
+  nav { height: 52px; }
+}
+
+/* --- Touch device adjustments --- */
+@media (hover: none) and (pointer: coarse) {
+  .hero-cta:hover,
+  .cta-btn:hover,
+  .cta-btn-wa:hover { transform: none; box-shadow: none; }
+  .project-card:hover { border-color: rgba(212, 168, 83, 0.12); transform: none; }
+  .achievement-card:hover { border-color: rgba(212, 168, 83, 0.12); transform: none; }
+  .athletics-item:hover { border-color: rgba(212, 168, 83, 0.12); }
+  .nav-links a:hover::after { width: 0; }
+  .pinned-card:hover { transform: none; }
+
+  /* Nav: remove mix-blend-mode on touch devices for rendering compat */
+  nav { mix-blend-mode: normal; background: rgba(11, 13, 23, 0.92); color: #e8e6e3; }
+}
+
+/* --- Tap highlight --- */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* --- iOS safe area for notch/home indicator --- */
+@supports (padding: max(0px)) {
+  nav {
+    padding-left: max(clamp(1.5rem, 4vw, 4rem), env(safe-area-inset-left));
+    padding-right: max(clamp(1.5rem, 4vw, 4rem), env(safe-area-inset-right));
+  }
+  .section {
+    padding-left: max(clamp(1rem, 4vw, 4rem), env(safe-area-inset-left));
+    padding-right: max(clamp(1rem, 4vw, 4rem), env(safe-area-inset-right));
+  }
+}
+
+/* --- Reduced motion --- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-
-  .hero .char {
-    opacity: 1;
-    transform: none;
-  }
-
-  .section-title .word {
-    opacity: 1;
-    transform: none;
-  }
-
-  .cta-title .word {
-    opacity: 1;
-    transform: none;
-  }
-
-  .project-card {
-    opacity: 1;
-    transform: none;
-  }
-
-  .skill-category {
-    opacity: 1;
-    transform: none;
-  }
-
-  .achievement-card {
-    opacity: 1;
-    transform: none;
-  }
-
-  .athletics-item {
-    opacity: 1;
-    transform: none;
-  }
-
-  .cert-item {
-    opacity: 1;
-    transform: none;
-  }
-
-  .hero-cta {
-    opacity: 1;
-  }
-
-  .hero-sub {
-    opacity: 1;
-  }
-
-  .scroll-cue {
-    opacity: 1;
-  }
-
-  .footer-closing {
-    opacity: 1;
-    transform: none;
-  }
+  .hero .char { opacity: 1; transform: none; }
+  .section-title .word { opacity: 1; transform: none; }
+  .cta-title .word { opacity: 1; transform: none; }
+  .project-card { opacity: 1; transform: none; clip-path: none; }
+  .skill-category { opacity: 1; transform: none; }
+  .achievement-card { opacity: 1; transform: none; }
+  .athletics-item { opacity: 1; transform: none; }
+  .cert-item { opacity: 1; transform: none; }
+  .hero-cta { opacity: 1; }
+  .hero-sub { opacity: 1; }
+  .scroll-cue { opacity: 1; }
+  .footer-closing { opacity: 1; transform: none; }
 }

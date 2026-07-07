@@ -13,6 +13,7 @@ nav {
   padding: 0 clamp(1.5rem, 4vw, 4rem);
   mix-blend-mode: difference;
   color: #fff;
+  background: transparent;
 
   .nav-logo {
     font-family: $font-serif;

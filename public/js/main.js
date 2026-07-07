@@ -575,7 +575,6 @@
       initFooterReveal();
       initCounters();
       initPinnedShowcase();
-      initPinnedCardsPop();
       initMagneticButtons();
       initNavLinks();
       initMobileNav();
