@@ -383,92 +383,6 @@
   }
 
   // --- Pinned Showcase Horizontal Scroll ---
-  function initPinnedShowcase() {
-    const showcase = document.querySelector('.pinned-showcase');
-    const sticky = document.querySelector('.pinned-showcase-sticky');
-    if (!showcase || !sticky) return;
-
-    function setupPinnedShowcase() {
-      const isMobileNow = mobileMQ.matches;
-
-      if (isReduced || isMobileNow) {
-        // Kill GSAP pinning if it was set up
-        ScrollTrigger.getAll().forEach(st => {
-          if (st.vars.pin && st.vars.trigger === showcase) st.kill();
-        });
-        sticky.style.overflowX = 'auto';
-        sticky.style.scrollSnapType = 'x mandatory';
-        sticky.style.WebkitOverflowScrolling = 'touch';
-        gsap.set(sticky, { clearProps: 'all' });
-        return;
-      }
-
-      // Desktop: GSAP-driven scrubbed horizontal scroll
-      sticky.style.overflowX = '';
-      sticky.style.scrollSnapType = '';
-
-      const track = document.getElementById('showcase-track');
-      if (!track) return;
-      const cards = track.querySelectorAll('.pinned-card');
-      if (cards.length === 0) return;
-
-      let cardStyle = window.getComputedStyle(cards[0]);
-      let gap = parseFloat(cardStyle.marginRight) || 48;
-      let cardW = cards[0].offsetWidth + gap;
-      let totalW = cardW * cards.length - gap;
-      let viewportW = window.innerWidth;
-      let maxScroll = Math.max(0, totalW - viewportW + 80);
-
-      function updateMetrics() {
-        cardStyle = window.getComputedStyle(cards[0]);
-        gap = parseFloat(cardStyle.marginRight) || 48;
-        cardW = cards[0].offsetWidth + gap;
-        totalW = cardW * cards.length - gap;
-        viewportW = window.innerWidth;
-        maxScroll = Math.max(0, totalW - viewportW + 80);
-        ScrollTrigger.refresh();
-      }
-
-      window.addEventListener('resize', updateMetrics);
-
-      gsap.to(track, {
-        x: () => -maxScroll,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: showcase,
-          start: 'top top',
-          end: () => '+=' + (maxScroll + window.innerHeight),
-          pin: sticky,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        }
-      });
-    }
-
-    setupPinnedShowcase();
-    mobileMQ.addEventListener('change', setupPinnedShowcase);
-  }
-
-  // --- Pinned Cards Scale + Saturation Pop ---
-  function initPinnedCardsPop() {
-    if (isReduced || isMobile) return;
-    document.querySelectorAll('.pinned-card').forEach(card => {
-      gsap.fromTo(card, {
-        scale: 0.92,
-        filter: 'grayscale(0.6) saturate(0.4)',
-      }, {
-        scale: 1,
-        filter: 'grayscale(0) saturate(1)',
-        duration: 1.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 75%',
-          toggleActions: 'play none none reverse',
-        }
-      });
-    });
-  }
 
   // --- Magnetic Button Effect ---
   function initMagneticButtons() {
@@ -535,7 +449,7 @@
     });
   }
 
-  // --- Cert Timeline Reveal ---
+  // --- Cert Cards Reveal ---
   function initCertReveal() {
     if (isReduced) {
       document.querySelectorAll('.cert-item').forEach(c => {
@@ -543,13 +457,19 @@
       });
       return;
     }
-    gsap.to('.cert-item', {
-      opacity: 1, x: 0,
+    gsap.fromTo('.cert-item', {
+      scale: 0.92,
+      rotationY: 15,
+      opacity: 0,
+    }, {
+      scale: 1,
+      rotationY: 0,
+      opacity: 1,
       duration: 0.6,
-      stagger: 0.08,
+      stagger: 0.07,
       ease: 'power3.out',
       scrollTrigger: {
-        trigger: '.cert-timeline',
+        trigger: '.cert-grid',
         start: 'top 80%',
         toggleActions: 'play none none reverse',
       }
@@ -574,7 +494,7 @@
       initAchievementsReveal();
       initFooterReveal();
       initCounters();
-      initPinnedShowcase();
+
       initMagneticButtons();
       initNavLinks();
       initMobileNav();
