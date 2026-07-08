@@ -449,42 +449,81 @@
     });
   }
 
-  // --- Cert Cards Reveal ---
+  // --- Cert Cards Infinite Loop ---
   function initCertReveal() {
-    if (isReduced) {
-      document.querySelectorAll('.cert-item').forEach(c => {
-        c.style.opacity = '1'; c.style.transform = 'none';
-      });
+    const track = document.getElementById('cert-track');
+    const grid = document.getElementById('cert-grid');
+    if (!track || !grid) return;
+
+    const cards = gsap.utils.toArray('.cert-item');
+    if (cards.length === 0) return;
+
+    if (isReduced || isMobile) {
+      cards.forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
       return;
     }
-    gsap.fromTo('.cert-item', {
-      y: 60,
-      rotationX: 10,
-      scale: 0.9,
-      opacity: 0,
+
+    let loopTween = null;
+    let clonesAdded = false;
+
+    function startLoop() {
+      if (loopTween) return;
+      if (!clonesAdded) {
+        cards.forEach(c => track.appendChild(c.cloneNode(true)));
+        clonesAdded = true;
+      }
+      const cardW = cards[0].offsetWidth + 20;
+      const totalW = cardW * cards.length;
+      loopTween = gsap.to(track, {
+        x: -totalW, duration: 40, ease: 'none', repeat: -1,
+        onRepeat: () => gsap.set(track, { x: 0 }),
+      });
+      const onHoverIn = () => loopTween.pause();
+      const onHoverOut = () => loopTween.resume();
+      track._hoverHandlers = [onHoverIn, onHoverOut];
+      track.addEventListener('mouseenter', onHoverIn);
+      track.addEventListener('mouseleave', onHoverOut);
+    }
+
+    function killLoop() {
+      if (loopTween) { loopTween.kill(); loopTween = null; }
+      if (track._hoverHandlers) {
+        track.removeEventListener('mouseenter', track._hoverHandlers[0]);
+        track.removeEventListener('mouseleave', track._hoverHandlers[1]);
+        track._hoverHandlers = null;
+      }
+    }
+
+    const entranceTween = gsap.fromTo(cards, {
+      y: 60, rotationX: 10, scale: 0.9, opacity: 0,
     }, {
-      y: 0,
-      rotationX: 0,
-      scale: 1,
-      opacity: 1,
+      y: 0, rotationX: 0, scale: 1, opacity: 1,
       duration: 0.7,
       stagger: { each: 0.06, from: 'random' },
       ease: 'power3.out',
-      scrollTrigger: {
-        trigger: '.cert-grid',
-        start: 'top 82%',
-        toggleActions: 'play none none reverse',
-      }
+    });
+
+    let entered = false;
+    ScrollTrigger.create({
+      trigger: grid,
+      start: 'top 82%',
+      toggleActions: 'play none none none',
+      animation: entranceTween,
+      onEnter: () => {
+        if (!entered) {
+          entranceTween.eventCallback('onComplete', startLoop);
+          entered = true;
+        }
+      },
+      onLeave: killLoop,
+      onEnterBack: () => { if (!loopTween) startLoop(); },
     });
 
     gsap.to('#cert-bg-glow', {
-      y: -80,
-      ease: 'none',
+      y: -80, ease: 'none',
       scrollTrigger: {
         trigger: '#more-certifications',
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1.5,
+        start: 'top bottom', end: 'bottom top', scrub: 1.5,
       }
     });
   }
