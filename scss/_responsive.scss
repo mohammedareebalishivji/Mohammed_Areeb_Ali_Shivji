@@ -84,7 +84,7 @@
     background-size: 100% 200%;
     background-position: 50% 0%;
   }
-  .hero-title { font-size: clamp(2.2rem, 12vw, 3.5rem); }
+  .hero-title { font-size: clamp(1.8rem, 7vw, 3rem); }
   .hero-particles { display: none; }
 
   /* Nav: links always visible, just tighter */
@@ -115,6 +115,7 @@
     text-align: center;
     display: flex; flex-direction: column; align-items: center;
   }
+  .hero-title { font-size: clamp(1.6rem, 9vw, 2.4rem); }
   .hero-sub { text-align: center; }
 
   .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
@@ -173,7 +174,7 @@
 /* --- Landscape mobile --- */
 @media (max-height: 500px) and (orientation: landscape) {
   .hero { min-height: 120svh; padding-top: 5rem; }
-  .hero-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+  .hero-title { font-size: clamp(1.4rem, 5vw, 2rem); }
   .hero-sub { font-size: 0.85rem; max-width: 400px; }
   .scroll-cue { display: none; }
   nav { height: 52px; }

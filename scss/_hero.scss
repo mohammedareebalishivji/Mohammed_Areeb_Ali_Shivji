@@ -40,7 +40,7 @@
   color: $text;
 }
 
-.hero-title .line { display: block; }
+.hero-title .line { display: block; overflow-wrap: break-word; }
 
 .hero-title .char {
   display: inline-block;
