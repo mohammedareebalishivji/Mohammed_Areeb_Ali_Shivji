@@ -62,7 +62,7 @@
   .project-card-img::after { display: none; }
 
 
-  .cert-item { padding: 1.5rem; }
+  .cert-item { width: 300px; padding: 1.5rem; }
   .cert-item-title { font-size: 1rem; }
   .cert-item-desc { font-size: 0.82rem; line-height: 1.6; }
   .cert-item-org { font-size: 0.8rem; }
@@ -134,9 +134,7 @@
   .athletics-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
   .athletics-item { padding: 1rem; }
 
-  .cert-grid { overflow: visible; }
-  .cert-track { flex-direction: column; width: auto; }
-  .cert-item { width: auto; padding: 1.25rem; }
+  .cert-item { width: 280px; padding: 1.25rem; }
   .cert-item-title { font-size: 0.95rem; }
   .cert-item-desc { font-size: 0.88rem; }
 
@@ -159,6 +157,7 @@
   .hero-title .char { transform: translateY(60px) rotateX(-40deg); }
   .hero-sub { font-size: 0.85rem; }
   .section-title { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+  .cert-item { width: 220px; }
   .athletics-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
   .about-stat-num { font-size: 1.4rem; }
@@ -190,9 +189,6 @@
   .achievement-card:hover { border-color: rgba(212, 168, 83, 0.12); transform: none; }
   .athletics-item:hover { border-color: rgba(212, 168, 83, 0.12); }
   .cert-item:hover { transform: none; box-shadow: none; border-color: $border; }
-  .cert-grid { overflow: visible; }
-  .cert-track { flex-direction: column; width: auto; }
-  .cert-item { width: auto; }
   .nav-links a:hover::after { width: 0; }
 
   /* Nav: remove mix-blend-mode on touch devices for rendering compat */

@@ -458,7 +458,7 @@
     const cards = gsap.utils.toArray('.cert-item');
     if (cards.length === 0) return;
 
-    if (isReduced || isMobile) {
+    if (isReduced) {
       cards.forEach(c => { c.style.opacity = '1'; c.style.transform = 'none'; });
       return;
     }
@@ -478,19 +478,23 @@
         x: -totalW, duration: 40, ease: 'none', repeat: -1,
         onRepeat: () => gsap.set(track, { x: 0 }),
       });
-      const onHoverIn = () => loopTween.pause();
-      const onHoverOut = () => loopTween.resume();
-      track._hoverHandlers = [onHoverIn, onHoverOut];
-      track.addEventListener('mouseenter', onHoverIn);
-      track.addEventListener('mouseleave', onHoverOut);
+      const pauseLoop = () => loopTween.pause();
+      const resumeLoop = () => loopTween.resume();
+      track._loopHandlers = [pauseLoop, resumeLoop];
+      track.addEventListener('mouseenter', pauseLoop);
+      track.addEventListener('mouseleave', resumeLoop);
+      track.addEventListener('touchstart', pauseLoop, { passive: true });
+      track.addEventListener('touchend', resumeLoop, { passive: true });
     }
 
     function killLoop() {
       if (loopTween) { loopTween.kill(); loopTween = null; }
-      if (track._hoverHandlers) {
-        track.removeEventListener('mouseenter', track._hoverHandlers[0]);
-        track.removeEventListener('mouseleave', track._hoverHandlers[1]);
-        track._hoverHandlers = null;
+      if (track._loopHandlers) {
+        track.removeEventListener('mouseenter', track._loopHandlers[0]);
+        track.removeEventListener('mouseleave', track._loopHandlers[1]);
+        track.removeEventListener('touchstart', track._loopHandlers[0]);
+        track.removeEventListener('touchend', track._loopHandlers[1]);
+        track._loopHandlers = null;
       }
     }
 
