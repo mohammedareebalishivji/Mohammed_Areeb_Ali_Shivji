@@ -61,6 +61,14 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'favicon.svg'));
 });
 
+// Terms & Privacy
+app.get('/terms', (req, res) => {
+  res.render('terms', { year: new Date().getFullYear() });
+});
+app.get('/privacy', (req, res) => {
+  res.render('privacy', { year: new Date().getFullYear() });
+});
+
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', uptime: process.uptime() });

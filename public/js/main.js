@@ -458,20 +458,33 @@
       return;
     }
     gsap.fromTo('.cert-item', {
-      scale: 0.92,
-      rotationY: 15,
+      y: 60,
+      rotationX: 10,
+      scale: 0.9,
       opacity: 0,
     }, {
+      y: 0,
+      rotationX: 0,
       scale: 1,
-      rotationY: 0,
       opacity: 1,
-      duration: 0.6,
-      stagger: 0.07,
+      duration: 0.7,
+      stagger: { each: 0.06, from: 'random' },
       ease: 'power3.out',
       scrollTrigger: {
         trigger: '.cert-grid',
-        start: 'top 80%',
+        start: 'top 82%',
         toggleActions: 'play none none reverse',
+      }
+    });
+
+    gsap.to('#cert-bg-glow', {
+      y: -80,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#more-certifications',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1.5,
       }
     });
   }

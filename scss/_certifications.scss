@@ -1,9 +1,19 @@
+#more-certifications { position: relative; }
+
+.cert-bg-glow {
+  position: absolute; top: -20%; right: -10%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212, 168, 83, 0.06) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 1.25rem;
   margin-top: 3rem;
   perspective: 1200px;
+  position: relative; z-index: 1;
 }
 
 .cert-item {
