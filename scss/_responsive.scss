@@ -37,7 +37,7 @@
   /* Layout shifts — sections recomposed not shrunk */
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .about-image-wrap {
-    aspect-ratio: 4/3; max-width: 400px; margin: 0 auto;
+    max-width: 300px; margin: 0 auto;
   }
   .about-image {
     object-position: center 20%;
@@ -120,8 +120,6 @@
   .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
   .about-stat-num { font-size: 1.75rem; }
   .about-stat-label { font-size: 0.65rem; }
-  .about-image-wrap { max-width: 300px; }
-
   .project-card { padding: 1.25rem; gap: 1rem; }
   .project-card-title { font-size: 1.15rem; }
   .project-card-desc { font-size: 0.88rem; }
@@ -159,7 +157,6 @@
   .hero-title .char { transform: translateY(60px) rotateX(-40deg); }
   .hero-sub { font-size: 0.85rem; }
   .section-title { font-size: clamp(1.4rem, 5vw, 1.8rem); }
-  .about-image-wrap { max-width: 240px; }
   .athletics-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
   .about-stat-num { font-size: 1.4rem; }

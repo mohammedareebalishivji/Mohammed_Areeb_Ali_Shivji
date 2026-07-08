@@ -7,16 +7,18 @@
 }
 
 .cert-item {
-  background: $surface;
-  border: 1px solid $border;
+  background: linear-gradient(135deg, $surface, rgba(212, 168, 83, 0.04));
+  border: 1px solid rgba(212, 168, 83, 0.15);
   border-radius: 4px;
   padding: 1.75rem;
   opacity: 0;
   transform-style: preserve-3d;
+  border-left: 3px solid $accent;
   transition: border-color 0.4s ease, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease;
 
   &:hover {
     border-color: $accent;
+    border-left-width: 4px;
     transform: translateY(-4px) rotateX(-2deg) rotateY(2deg);
     box-shadow: 0 12px 40px rgba(0,0,0,0.2);
   }
